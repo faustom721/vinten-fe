@@ -1,22 +1,19 @@
-import { UPDATE_USER } from "redux/actions/userActions";
+import { actionTypes } from 'redux/actions/userActions';
 
 const initialState = {
-    uid: "",
-    firstName: "",
-    lastName: "",
-    email: "",
-    phone: "",
-  };
-  
-  export const userReducer = (state=initialState, action) => {
-    switch (action.type) {
-      case UPDATE_USER:
-        return {
-          ...state,
-          ...action.payload
-        };
-      default:
-        return state;
-    }
-  };
-  
+  authenticated: false,
+};
+
+export const userReducer = (state = initialState, action) => {
+  switch (action.type) {
+    case actionTypes.AUTHENTICATED:
+      return { ...state, authenticated: true };
+    case actionTypes.UNAUTHENTICATED:
+      return { ...state, authenticated: false };
+    case actionTypes.AUTHENTICATION_ERROR:
+      return { ...state, error: action.payload };
+
+    default:
+      return state;
+  }
+};
