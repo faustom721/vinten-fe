@@ -46,4 +46,12 @@ function App() {
   );
 }
 
+// To monitor the app built environment
+window.showEnv = () => {
+  return {
+    NODE_ENV: process.env.NODE_ENV,
+    REACT_APP_API_URL: process.env.REACT_APP_API_URL,
+  };
+};
+
 export default App;

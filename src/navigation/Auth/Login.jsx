@@ -27,9 +27,6 @@ const Login = (props) => {
   });
   const [submitted, setSubmitted] = useState(false);
   const { username, password } = inputs;
-  const loggingIn = useSelector((state) => state.authentication.loggingIn);
-  const dispatch = useDispatch();
-  const location = useLocation();
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -39,16 +36,19 @@ const Login = (props) => {
   function handleSubmit(e) {
     e.preventDefault();
 
-    props.LoginAction(inputs, this.props.history);
+    props.LoginAction(inputs, props.history);
   }
 
   return (
     <>
       <Container className={classes.container} maxWidth='xs'>
-        <form>
+        <form onSubmit={handleSubmit}>
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <Grid container spacing={2}>
+                <Grid container justify='center'>
+                  <h1>Acceso a la plataforma</h1>
+                </Grid>
                 <Grid item xs={12}>
                   <TextField
                     fullWidth
@@ -71,8 +71,13 @@ const Login = (props) => {
               </Grid>
             </Grid>
             <Grid item xs={12}>
-              <Button color='secondary' fullWidth type='submit'>
-                Log in
+              <Button
+                color='secondary'
+                variant='contained'
+                fullWidth
+                type='submit'
+              >
+                Iniciar sesión
               </Button>
             </Grid>
           </Grid>

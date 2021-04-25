@@ -3,7 +3,12 @@
  * TODO: create a theme object as per designs
  */
 import { createMuiTheme } from '@material-ui/core';
-import { fontWeight } from '@material-ui/system';
+
+const lightBackground = '#f6f6f4',
+  lightBlue = '#8eadc0',
+  blue = '#748fb1',
+  purple = '#46394f',
+  yellow = '#aa9830';
 
 // Global styles can be moved to a separate file for ease of maintenance.
 const global = {
@@ -33,13 +38,13 @@ export const light = () =>
     palette: {
       type: 'light',
       background: {
-        default: '#fbfaf8',
+        default: lightBackground,
       },
       primary: {
-        main: '#fbb728',
+        main: blue,
       },
       secondary: {
-        main: '#040f3d',
+        main: lightBlue,
       },
     },
   });
