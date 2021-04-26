@@ -1,61 +1,75 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
-import { Button } from '@material-ui/core';
+import { Button, Typography } from '@material-ui/core';
 import Container from '@material-ui/core/Container';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
+import Box from '@material-ui/core/Box';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch, useSelector, connect } from 'react-redux';
 
-import { useAuth } from './ProvideAuth';
+// For some reason we need this here
+import { store } from 'redux/store';
+
 import { LinkRoute } from 'components/LinkRoute';
 import { ROOT } from 'navigation/CONSTANTS';
 import { userActionCreator } from 'redux/actions/userActions';
 
 const useStyles = makeStyles((theme) => ({
-  container: {
-    padding: theme.spacing(3),
+  loginWrapper: {
+    border: 'solid 1px',
+    padding: '15px',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    // minHeight: '100vh',
   },
 }));
 
-const Login = (props) => {
+function Login(props) {
   const classes = useStyles();
+  const history = useHistory();
 
-  const [inputs, setInputs] = useState({
+  const [credentials, setCredentials] = useState({
     username: '',
     password: '',
   });
-  const [submitted, setSubmitted] = useState(false);
-  const { username, password } = inputs;
 
   function handleChange(e) {
     const { name, value } = e.target;
-    setInputs((inputs) => ({ ...inputs, [name]: value }));
+    setCredentials((input) => ({ ...credentials, [name]: value }));
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-
-    props.LoginAction(inputs, props.history);
+    props.loginAction(credentials, history);
   }
 
   return (
-    <>
-      <Container className={classes.container} maxWidth='xs'>
+    <Box
+      display='flex'
+      justifyContent='center'
+      alignItems='center'
+      minHeight='80vh'
+    >
+      <Container className={classes.loginWrapper} maxWidth='xs'>
         <form onSubmit={handleSubmit}>
           <Grid container spacing={3}>
             <Grid item xs={12}>
               <Grid container spacing={2}>
                 <Grid container justify='center'>
-                  <h1>Acceso a la plataforma</h1>
+                  <Box mb={3}>
+                    <Typography variant='h2'>Acceso</Typography>
+                  </Box>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid item m={2} xs={12}>
                   <TextField
                     fullWidth
                     label='Email'
                     name='email'
                     size='small'
                     variant='outlined'
+                    onChange={handleChange}
                   />
                 </Grid>
                 <Grid item xs={12}>
@@ -66,6 +80,7 @@ const Login = (props) => {
                     size='small'
                     type='password'
                     variant='outlined'
+                    onChange={handleChange}
                   />
                 </Grid>
               </Grid>
@@ -83,9 +98,9 @@ const Login = (props) => {
           </Grid>
         </form>
       </Container>
-    </>
+    </Box>
   );
-};
+}
 
 const mapStateToProps = ({ user }) => {
   return {

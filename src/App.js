@@ -5,14 +5,14 @@ import 'utils/dropConsole';
 import 'fontsource-roboto';
 // ROUTER
 import { BrowserRouter } from 'react-router-dom';
-import { RouterConfig } from 'navigation/RouterConfig';
+import { Routing } from 'navigation/Routing';
 // MUI Theme
 import { ThemeProvider, Button, createMuiTheme } from '@material-ui/core';
 import { ThemeSwitch } from 'components/ThemeSwitch';
 import { dark, light } from 'styles/muiTheme';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import './App.css';
-import { ProvideAuth } from 'navigation/Auth/ProvideAuth';
+// import { ProvideAuth } from 'navigation/Auth/ProvideAuth';
 // Redux
 import { Provider } from 'react-redux';
 import { store } from 'redux/store';
@@ -34,11 +34,9 @@ function App() {
               darkState={darkState}
               handleThemeChange={handleThemeChange}
             />
-            <ProvideAuth>
-              <BrowserRouter>
-                <RouterConfig />
-              </BrowserRouter>
-            </ProvideAuth>
+            <BrowserRouter>
+              <Routing />
+            </BrowserRouter>
           </ThemeProvider>
         </Provider>
       </div>

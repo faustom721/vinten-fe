@@ -2,19 +2,18 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from 'pages/Home';
 import { NotFound } from 'navigation/NotFound';
-import { ROOT, PAGE1, AUTH_PAGE1 } from 'navigation/CONSTANTS';
+import { ROOT, AUTH_PAGE1 } from 'navigation/CONSTANTS';
 import { Page1 } from 'pages/Page1';
 import Login from './Auth/Login';
 import { AuthorizedPage1 } from 'pages/AuthorizedPage1';
 import PrivateRoute from './Auth/PrivateRoute';
 
-export const RouterConfig = () => {
+export const Routing = () => {
   return (
     <div>
       <Switch>
         {/* List all public routes here */}
         <Route exact path={ROOT} component={Home} />
-        <Route exact path={PAGE1} component={Page1} />
         <Route path='/login'>
           <Login />
         </Route>

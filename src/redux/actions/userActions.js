@@ -13,7 +13,6 @@ export const actionTypes = {
 const userActions = {
   loading: (value) => ({
     type: actionTypes.LOADING,
-    payload: value,
   }),
   authenticated: () => ({
     type: actionTypes.AUTHENTICATED,
@@ -24,14 +23,13 @@ const userActions = {
 
 export const userActionCreator = (dispatch) => ({
   // Login *****
-  LoginAction: async ({ email, password }, history) => {
+  loginAction: async ({ email, password }, history) => {
     dispatch(userActions.loading(true));
     try {
-      debugger;
       const res = login({ email, password });
       dispatch(userActions.authenticated());
       localStorage.setItem('user', res.data.token);
-      // history.push('/secret');
+      history.push('/secret');
     } catch (error) {
       dispatch({
         type: actionTypes.AUTHENTICATION_ERROR,
