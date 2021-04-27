@@ -3,6 +3,7 @@ import { actionTypes } from 'redux/actions/userActions';
 const initialState = {
   loading: false,
   authenticated: false,
+  error: null,
 };
 
 export const userReducer = (state = initialState, action) => {
