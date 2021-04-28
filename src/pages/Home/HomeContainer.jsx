@@ -1,7 +1,7 @@
 import React from 'react';
 import HomeView from './HomeView';
 import { Link } from 'react-router-dom';
-import { AUTH_PAGE1, PAGE1 } from 'navigation/CONSTANTS';
+import { SELECT_MEMBERSHIP, PAGE1 } from 'navigation/CONSTANTS';
 import { LinkRoute } from 'components/LinkRoute';
 import { NavLinks } from './components/NavLinks';
 

@@ -17,8 +17,7 @@ axiosInstance.interceptors.request.use(async (config) => {
     : 'application/json';
 
   if (config.needToken) {
-    // const token = selectJwt(store.getState());
-    const token = '';
+    const token = localStorage.getItem('token');
     config.headers = {
       'Content-Type': headerType,
       Authorization: `Bearer ${token}`,

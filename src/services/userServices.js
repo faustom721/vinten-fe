@@ -10,3 +10,14 @@ export const login = ({ username, password }) => {
 
   return response;
 };
+
+export const getMemberships = () => {
+  const url = 'memberships/';
+  const response = axiosInstance({
+    method: 'GET',
+    url,
+    needToken: true,
+  });
+
+  return response;
+};

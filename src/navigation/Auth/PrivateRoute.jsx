@@ -3,11 +3,9 @@
 import React, { createContext, useContext, useState } from 'react';
 import { Redirect, Route } from 'react-router-dom';
 import { connect } from 'react-redux';
-// import { useAuth } from './ProvideAuth';
 
 // screen if you're not yet authenticated.
 function PrivateRoute({ children, user, ...rest }) {
-  // let auth = useAuth();
   return (
     <Route
       {...rest}
@@ -31,9 +29,9 @@ function PrivateRoute({ children, user, ...rest }) {
   );
 }
 
-const mapStateToProps = ({ persist }) => {
+const mapStateToProps = ({ user }) => {
   return {
-    session: persist,
+    user,
   };
 };
 

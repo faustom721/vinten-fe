@@ -2,10 +2,10 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Home from 'pages/Home';
 import { NotFound } from 'navigation/NotFound';
-import { ROOT, AUTH_PAGE1 } from 'navigation/CONSTANTS';
+import { ROOT, SELECT_MEMBERSHIP } from 'navigation/CONSTANTS';
 import { Page1 } from 'pages/Page1';
 import Login from './Auth/Login';
-import { AuthorizedPage1 } from 'pages/AuthorizedPage1';
+import SelectMembership from 'pages/SelectMembership';
 import PrivateRoute from './Auth/PrivateRoute';
 
 export const Routing = () => {
@@ -19,8 +19,8 @@ export const Routing = () => {
         </Route>
 
         {/* List all private/auth routes here */}
-        <PrivateRoute path={AUTH_PAGE1}>
-          <AuthorizedPage1 />
+        <PrivateRoute path={SELECT_MEMBERSHIP}>
+          <SelectMembership />
         </PrivateRoute>
         {/* Do not hesitate to play around by moving some routes from public to private and vice-versa */}
         {/* <PrivateRoute path={DASHBOARD}>
