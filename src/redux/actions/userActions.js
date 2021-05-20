@@ -1,4 +1,4 @@
-import { login, getMemberships } from 'services';
+import { login, getMemberships, getUserData } from 'services';
 import { SELECT_MEMBERSHIP } from 'navigation/CONSTANTS';
 
 // ***************** Action types *********************
@@ -12,6 +12,7 @@ export const actionTypes = {
   RESET_ERROR: 'RESET_ERROR_USER',
   RESET_COMPANY: 'RESET_COMPANY',
   FILL_DATA: 'FILL_DATA_USER',
+  FETCH_MEMBERSHIPS: 'FETCH_MEMBERSHIPS',
 };
 
 // ***************** Actions **************************
@@ -38,6 +39,10 @@ const userActions = {
   fillUserData: (userData) => ({
     type: actionTypes.FILL_DATA,
     payload: userData,
+  }),
+  fetchMemberships: (memberships) => ({
+    type: actionTypes.FETCH_MEMBERSHIPS,
+    payload: memberships,
   }),
 };
 
@@ -70,13 +75,24 @@ export const userActionCreator = (dispatch) => ({
       const res = await getMemberships();
       if (res.status !== 200) throw res;
       dispatch(userActions.resetCompany());
-      if (res.data.length > 0) {
-        console.log(res.data[0].user);
-        dispatch(userActions.fillUserData(res.data[0].user)); // use the user's data in the first membership object
-      } else {
+      dispatch(userActions.fetchMemberships(res.data));
+      if (!res.data.length > 0) {
         dispatch(userActions.NO_COMPANY_ERROR);
       }
     } catch (error) {
+      dispatch(userActions.authenticationError());
+    }
+    dispatch(userActions.loading(false));
+  },
+  // -- Get user's data
+  getUserData: async () => {
+    dispatch(userActions.loading(true));
+    try {
+      const res = await getUserData();
+      if (res.status !== 200) throw res;
+      dispatch(userActions.fillUserData(res.data)); // use the user's data in the first membership object
+    } catch (error) {
+      console.error(error);
       dispatch(userActions.authenticationError());
     }
     dispatch(userActions.loading(false));

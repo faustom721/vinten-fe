@@ -8,6 +8,8 @@ const initialState = {
   firstName: null,
   lastName: null,
   username: null,
+
+  memberships: [],
 };
 
 export const userReducer = (state = initialState, action) => {
@@ -30,7 +32,8 @@ export const userReducer = (state = initialState, action) => {
         lastName: userData.last_name,
         username: userData.username,
       };
-
+    case actionTypes.FETCH_MEMBERSHIPS:
+      return { ...state, memberships: action.payload };
     default:
       return state;
   }

@@ -8,9 +8,9 @@ import { CenteredWrapper } from 'components';
 import { userActionCreator } from 'redux/actions/userActions';
 
 const SelectMembership = (props) => {
-  const [memberships, setMemberships] = useState(null);
   useEffect(() => {
-    setMemberships(props.getMemberships());
+    props.getMemberships();
+    props.getUserData();
   }, []);
 
   return (
@@ -22,18 +22,14 @@ const SelectMembership = (props) => {
         <InputLabel htmlFor='select'>Selecciona una compañía</InputLabel>
         <Select
           native
-          // value={state.age}
           // onChange={handleChange}
           label='Selecciona una compañía'
-          inputProps={{
-            name: 'age',
-            id: 'select',
-          }}
         >
-          <option aria-label='None' value='' />
-          <option value={10}>Ten</option>
-          <option value={20}>Twenty</option>
-          <option value={30}>Thirty</option>
+          {props.user.memberships.map((memb) => (
+            <option
+              value={memb.company.id}
+            >{`${memb.company.name} - (${memb.role})`}</option>
+          ))}
         </Select>
       </FormControl>
     </CenteredWrapper>

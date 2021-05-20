@@ -21,3 +21,14 @@ export const getMemberships = () => {
 
   return response;
 };
+
+export const getUserData = () => {
+  const url = 'me/';
+  const response = axiosInstance({
+    method: 'GET',
+    url,
+    needToken: true,
+  });
+
+  return response;
+};

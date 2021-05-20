@@ -19,6 +19,7 @@ const global = {
     button: {
       textTransform: 'none', //Using this will stop tranforming all button texts to UPPERCASE
     },
+    fontFamily: ['alata'].join(','),
   },
 
   overrides: {

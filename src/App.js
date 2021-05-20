@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 // Handle console logs
 import 'utils/dropConsole';
-// Styles
-import 'fontsource-roboto';
+// Fonts
+import '@fontsource/alata';
 // ROUTER
 import { BrowserRouter } from 'react-router-dom';
 import { Routing } from 'navigation/Routing';
