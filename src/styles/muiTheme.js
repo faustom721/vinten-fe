@@ -4,7 +4,7 @@
  */
 import { createMuiTheme } from '@material-ui/core';
 
-const lightBackground = '#f6f6f4',
+const lightBackground = '#FFE87F',
   lightBlue = '#8eadc0',
   blue = '#748fb1',
   purple = '#46394f',

@@ -10,6 +10,9 @@ const initialState = {
   username: null,
 
   memberships: [],
+
+  lastUsedCompany: null,
+  selectedCompany: null,
 };
 
 export const userReducer = (state = initialState, action) => {
@@ -31,6 +34,7 @@ export const userReducer = (state = initialState, action) => {
         firstName: userData.first_name,
         lastName: userData.last_name,
         username: userData.username,
+        lastUsedCompany: userData.last_used_company,
       };
     case actionTypes.FETCH_MEMBERSHIPS:
       return { ...state, memberships: action.payload };

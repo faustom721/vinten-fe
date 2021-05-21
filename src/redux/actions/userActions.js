@@ -1,4 +1,4 @@
-import { login, getMemberships, getUserData } from 'services';
+import { login, getMemberships, getUserData, getCompany } from 'services';
 import { SELECT_MEMBERSHIP } from 'navigation/CONSTANTS';
 
 // ***************** Action types *********************
@@ -94,6 +94,18 @@ export const userActionCreator = (dispatch) => ({
     } catch (error) {
       console.error(error);
       dispatch(userActions.authenticationError());
+    }
+    dispatch(userActions.loading(false));
+  },
+  // -- Get user's data
+  selectCompany: async () => {
+    dispatch(userActions.loading(true));
+    try {
+      const res = await getCompany();
+      if (res.status !== 200) throw res;
+      dispatch(userActions.selectCompany(res.data));
+    } catch (error) {
+      console.error(error);
     }
     dispatch(userActions.loading(false));
   },
