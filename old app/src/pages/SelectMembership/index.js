@@ -50,9 +50,11 @@ const SelectMembership = (props) => {
       </Grid>
 
       <Grid item>
-        <Button color='secondary' variant='contained'>
-          Continuar <NavigateNextIcon />
-        </Button>
+        <Link to={ROOT}>
+          <Button color='secondary' variant='contained'>
+            Continuar <NavigateNextIcon />
+          </Button>
+        </Link>
       </Grid>
     </CenteredWrapper>
   );

@@ -4,6 +4,8 @@ import { LanguageSelection } from './components/LanguageSelection';
 import { Typography, Button } from '@material-ui/core';
 import { ROOT } from 'navigation/CONSTANTS';
 import { useHistory } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { userActionCreator } from 'redux/actions/userActions';
 
 const HomeView = (props) => {
   const history = useHistory();
@@ -25,4 +27,16 @@ HomeView.propTypes = {
   title: PropTypes.string.isRequired,
 };
 
-export default HomeView;
+const mapStateToProps = ({ user }) => {
+  return {
+    user,
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    ...userActionCreator(dispatch),
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeView);

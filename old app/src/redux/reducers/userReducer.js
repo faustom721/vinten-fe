@@ -15,7 +15,7 @@ const initialState = {
   selectedCompany: null,
 };
 
-export const userReducer = (state = initialState, action) => {
+const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.LOADING:
       return { ...state, loading: true };
@@ -42,3 +42,5 @@ export const userReducer = (state = initialState, action) => {
       return state;
   }
 };
+
+export { userReducer };
