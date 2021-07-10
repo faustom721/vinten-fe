@@ -14,6 +14,11 @@ const commonStyles = {
       'sans-serif',
     ].join(','),
   },
+  props: {
+    MuiCard: {
+      variant: 'outlined',
+    },
+  },
   overrides: {
     MuiButton: {
       // override the styles of all instances of this component
