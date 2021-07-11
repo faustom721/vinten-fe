@@ -8,6 +8,7 @@ import drfProvider, {
 } from 'ra-data-django-rest-framework';
 
 import Dashboard from './screens/Dashboard';
+import MyLayout from './MyLayout';
 import { lightTheme, darkTheme } from './muiTheme';
 
 const authProvider = jwtTokenAuthProvider({
@@ -24,12 +25,17 @@ const App = () => {
 
   return (
     <Admin
+      layout={MyLayout}
       theme={isDarkModeEnabled ? darkTheme : lightTheme}
       dashboard={Dashboard}
       dataProvider={dataProvider}
       authProvider={authProvider}
     >
-      <Resource name='clients' list={ListGuesser} />
+      <Resource
+        name='2/clients'
+        options={{ label: 'Clientes' }}
+        list={ListGuesser}
+      />
     </Admin>
   );
 };
