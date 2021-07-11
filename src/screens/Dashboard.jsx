@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Card, CardContent, CardHeader, Grid } from '@material-ui/core';
 
-import { RegisterClient } from '../components/RegisterClient';
+import { RegisterClientOrProvider } from '../components/RegisterClientOrProvider';
 
 export default () => (
   <>
@@ -12,11 +12,11 @@ export default () => (
           <CardContent>ssss</CardContent>
         </Card>
       </Grid>
-      <Grid item xs={12} md={6}>
+      <Grid item xs={12} md={3}>
         <Card>
           <CardHeader title='Registrar nuevo cliente' />
           <CardContent>
-            <RegisterClient />
+            <RegisterClientOrProvider />
           </CardContent>
         </Card>
       </Grid>

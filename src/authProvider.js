@@ -3,7 +3,7 @@ import { AUTH_LOGIN, AUTH_LOGOUT, AUTH_ERROR, AUTH_CHECK } from 'react-admin';
 export default (type, params) => {
   if (type === AUTH_LOGIN) {
     const { username, password } = params;
-    const request = new Request('http://localhost:8000/token/', {
+    const request = new Request('http://localhost:8000/token', {
       method: 'POST',
       body: JSON.stringify({ username, password }),
       headers: new Headers({ 'Content-Type': 'application/json' }),
@@ -16,6 +16,7 @@ export default (type, params) => {
         return response.json();
       })
       .then(({ access }) => {
+        console.log(access);
         localStorage.setItem('token', access);
       });
   }
