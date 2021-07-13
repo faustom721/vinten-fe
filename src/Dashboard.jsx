@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { Card, CardContent, CardHeader, Grid } from '@material-ui/core';
+import moment from 'moment';
 
-import { RegisterClientOrProvider } from '../components/RegisterClientOrProvider';
+import { RegisterClientOrProvider } from './components/RegisterClientOrProvider';
 
 export default () => (
   <>
@@ -22,7 +23,7 @@ export default () => (
       </Grid>
       <Grid item xs={12} md={6}>
         <Card>
-          <CardHeader title='vinten dashboard' />
+          <CardHeader title={`Ventas del mes de ${moment().format('MMMM')}`} />
           <CardContent>ssss</CardContent>
         </Card>
       </Grid>

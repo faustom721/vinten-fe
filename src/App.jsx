@@ -1,23 +1,20 @@
 import * as React from 'react';
 import { Admin, Resource, ListGuesser, EditGuesser } from 'react-admin';
 import useMediaQuery from '@material-ui/core/useMediaQuery';
+// Set moment language to spanish
+import 'moment/locale/es';
 
-import drfProvider, {
-  jwtTokenAuthProvider,
-  fetchJsonWithAuthJWTToken,
-} from 'ra-data-django-rest-framework';
+import { jwtTokenAuthProvider } from 'ra-data-django-rest-framework';
 
-import Dashboard from './screens/Dashboard';
+import vintenDataProvider from './dataProvider';
+import Dashboard from './Dashboard';
 import MyLayout from './MyLayout';
 import { lightTheme, darkTheme } from './muiTheme';
 
 const authProvider = jwtTokenAuthProvider({
   obtainAuthTokenUrl: 'http://localhost:8000/token/',
 });
-const dataProvider = drfProvider(
-  'http://localhost:8000',
-  fetchJsonWithAuthJWTToken
-);
+const dataProvider = vintenDataProvider();
 
 const App = () => {
   // set dark theme when dark mode is set

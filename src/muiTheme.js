@@ -1,6 +1,6 @@
 import { createMuiTheme } from '@material-ui/core/styles';
 import indigo from '@material-ui/core/colors/indigo';
-import pink from '@material-ui/core/colors/pink';
+import deepOrange from '@material-ui/core/colors/deepOrange';
 import red from '@material-ui/core/colors/red';
 
 const commonStyles = {
@@ -35,7 +35,7 @@ const lightTheme = createMuiTheme({
 
   palette: {
     primary: indigo,
-    secondary: pink,
+    secondary: deepOrange,
     error: red,
     contrastThreshold: 3,
     tonalOffset: 0.2,
