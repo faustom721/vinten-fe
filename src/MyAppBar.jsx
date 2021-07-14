@@ -1,18 +1,6 @@
 // in src/MyAppBar.js
 import * as React from 'react';
-import {
-  AppBar,
-  useQuery,
-  useQueryWithStore,
-  Loading,
-  Error,
-  useNotify,
-  useRedirect,
-  fetchStart,
-  fetchEnd,
-} from 'react-admin';
-import axios from 'axios';
-import { useDispatch } from 'react-redux';
+import { AppBar, useQueryWithStore, Loading, Error } from 'react-admin';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Select from '@material-ui/core/Select';
@@ -44,14 +32,34 @@ const MyAppBar = (props) => {
     console.log('cambió la company', event.target.value);
   };
 
-  const { data, loading, error } = useQuery({
-    type: 'getListSimple',
+  // const [lastUsedMembership, setLastUsedMembership] = useState(null);
+  // const [memberships, setMemberships] = useState([]);
+
+  const { loaded, error, data } = useQueryWithStore({
+    type: 'simpleGet',
     resource: 'memberships',
   });
 
-  if (loading) return <Loading />;
+  // setMemberships(data);
+
+  // useEffect(() => {
+  //   setLastUsedMembership(
+  //     memberships.filter((membership) => membership.last_used === true)
+  //   );
+
+  //   console.log('mmmmmmmmmmmmmeeeeeeeeeeem');
+  //   console.log(data);
+  //   console.log(memberships);
+  //   console.log(lastUsedMembership);
+  // }, [memberships]);
+
+  if (!loaded) return <Loading />;
   if (error) return <Error />;
   if (!data) return null;
+
+  const lastUsedMembership = data.filter(
+    (membership) => membership.last_used === true
+  )[0];
 
   return (
     <AppBar {...props}>
@@ -60,16 +68,20 @@ const MyAppBar = (props) => {
         className={classes.title}
         id='react-admin-title'
       />
-      <Select
-        value={10}
-        className={classes.select}
-        onChange={handleCompanyChange}
-        disableUnderline
-      >
-        <MenuItem value={10}>Company 1</MenuItem>
-        <MenuItem value={20}>Company 2</MenuItem>
-        <MenuItem value={30}>Company 3</MenuItem>
-      </Select>{' '}
+      {lastUsedMembership && (
+        <Select
+          value={lastUsedMembership.id}
+          className={classes.select}
+          onChange={handleCompanyChange}
+          disableUnderline
+        >
+          {data.map((membership) => (
+            <MenuItem value={membership.id} key={membership.id}>
+              {membership.company.name}
+            </MenuItem>
+          ))}
+        </Select>
+      )}{' '}
       <Typography className={classes.role}>(Gerente)</Typography>
       <span className={classes.spacer} />
     </AppBar>

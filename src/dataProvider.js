@@ -10,13 +10,13 @@ export default () => {
   return {
     ...drfProvider(apiUrl, fetchJsonWithAuthJWTToken), //django rest data provider
 
-    // Like classic getList but not paginated response and no query params required
-    getListSimple: async (resource, params) => {
+    // Just a GET request
+    simpleGet: async (resource, params) => {
       const url = `${apiUrl}/${resource}/?${stringify(params)}`;
       const response = await fetchJsonWithAuthJWTToken(url);
 
       return {
-        data: response,
+        data: response.json,
         total: response.length,
       };
     },
